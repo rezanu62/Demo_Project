@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     "unfold.contrib.simple_history",
     "django.contrib.admin",
 
+
+    #Query_Counter
     'query_counter',
 
     # Django Apps
@@ -62,6 +64,9 @@ INSTALLED_APPS = [
     # DRF
     'rest_framework',
     'rest_framework_simplejwt',
+
+    #LogOut
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 # Custom User Model
@@ -76,6 +81,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
+
+    #Query_Conunter
     'query_counter.middleware.DjangoQueryCounterMiddleware',
 ]
 
@@ -176,11 +183,32 @@ STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
 stripe.api_key = STRIPE_SECRET_KEY
 
+#WebHook
 STRIPE_WEBHOOK_SECRET = config('STRIPE_WEBHOOK_SECRET')
 
 
+
+
 SIMPLE_JWT = {
+
+    #authentications_jwt
     "ACCESS_TOKEN_LIFETIME": timedelta(days=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=10),
 
+    #Logout
+    "BLACKLIST_AFTER_ROTATION": True,
+    "ROTATE_REFRESH_TOKENS": True,
 }
+
+
+#Change_Password
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#SMTP server
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'sawafrafa003@gmail.com'
+EMAIL_HOST_PASSWORD = 'zyhm skta cnxf cfew'
+
